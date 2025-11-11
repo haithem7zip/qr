@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple QR Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+    <h2>Simple QR Code Generator</h2>
+    <input type="text" id="text" value="https://univsetif-info-tasks-courses.vercel.app/" style="width: 300px;">
+    <button onclick="makeQR()">Generate QR</button>
+    <br><br>
+    <div id="qrcode"></div>
+
+    <script>
+        function makeQR() {
+            const text = document.getElementById('text').value;
+            const typeNumber = 4;
+            const errorCorrectionLevel = 'L';
+            
+            const qr = qrcode(typeNumber, errorCorrectionLevel);
+            qr.addData(text);
+            qr.make();
+            
+            document.getElementById('qrcode').innerHTML = qr.createImgTag(4);
+        }
+        
+        // Generate on load
+        makeQR();
+    </script>
+</body>
+</html>
